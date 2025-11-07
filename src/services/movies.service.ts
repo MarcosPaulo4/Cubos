@@ -1,3 +1,5 @@
+import { AddMovieDto } from "../dtos/movies.dto";
+
 export class MovieService {
   private static instance: MovieService;
   private constructor() { }
@@ -7,5 +9,12 @@ export class MovieService {
       MovieService.instance = new MovieService();
     }
     return MovieService.instance;
+  }
+
+
+  
+  async saveMovie(data: AddMovieDto) {
+
+  
   }
 }
