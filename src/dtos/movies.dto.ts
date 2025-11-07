@@ -50,21 +50,6 @@ export class AddMovieDto {
   @IsNotEmpty()
   status!: MovieStatus;
 
-  @Type(() => Number)
-  @IsNumber()
-  @IsOptional()
-  budget?: number;
-
-  @Type(() => Number)
-  @IsNumber()
-  @IsOptional()
-  revenue?: number;
-
-  @Type(() => Number)
-  @IsNumber()
-  @IsOptional()
-  profit?: number;
-
   @IsDateString()
   @IsOptional()
   releaseDate?: string;
