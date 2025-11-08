@@ -2,6 +2,7 @@ import { EntityManager, In, Not } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { MovieFiltersDto } from "../dtos/movies-filter.dto";
 import { AddMovieDto } from "../dtos/movies.dto";
+import { UpdateMovieDto } from "../dtos/updated-movie.dto";
 import { AgeRating } from "../entities/age-rating.entity";
 import { Genre } from "../entities/gender.entity";
 import { MovieGenre } from "../entities/movie-gender.entity";
@@ -184,7 +185,7 @@ export class MovieService {
 async updateMovie(
     userId: string,
     movieId: string,
-    data: Partial<AddMovieDto>
+    data: UpdateMovieDto
   ): Promise<Movie> {
     return AppDataSource.transaction(async (manager) => {
       const movie = await manager.findOne(Movie, {
@@ -220,7 +221,6 @@ async updateMovie(
       if (data.trailerUrl !== undefined) movie.trailerUrl = data.trailerUrl ;
       if (data.duration !== undefined) movie.duration = data.duration;
       if (data.status !== undefined) movie.status = data.status;
-      if (data.coverUrl !== undefined) movie.coverUrl = data.coverUrl;
 
       if (data.releaseDate !== undefined) {
         movie.releaseDate = new Date(data.releaseDate)

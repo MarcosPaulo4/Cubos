@@ -78,6 +78,11 @@ async create(
       if (!req.user) {
         return res.status(401).json({ message: "Não autorizado" });
       }
+      const raw = { ...req.body };
+
+      if (raw.ageRatingId === "" || raw.ageRatingId === null) {
+        delete raw.ageRatingId;
+      }
 
       const dto = plainToInstance(UpdateMovieDto, {
         ...req.body,
