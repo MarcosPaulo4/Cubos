@@ -11,7 +11,7 @@ export function isAuthenticated(
   res: Response,
   next: NextFunction
 ) {
-  const cookieToken = req.cookies?.accessToken as string | undefined;
+  const cookieToken = req.cookies?.token as string | undefined;
 
   const authHeader = req.headers.authorization;
   const headerToken =

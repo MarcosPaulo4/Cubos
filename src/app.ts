@@ -2,12 +2,18 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
+import cron from "node-cron";
 import 'reflect-metadata';
 import { AppDataSource } from './data-source';
+import { sendReleaseReminders } from './jobs/send-release-reminder';
 import { errorHandler } from './middlewares/error.middleware';
 import { apiRouter } from './routes';
 
 dotenv.config();
+
+cron.schedule("0 9 * * *", async () => {
+  await sendReleaseReminders();
+});
 
 const allowedOrigins = [
   process.env.CLIENT_URL || 'http://localhost:5173',

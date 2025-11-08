@@ -6,8 +6,7 @@ import {
   IsNotEmpty,
   IsNumber,
   IsOptional,
-  IsString,
-  IsUUID,
+  IsString
 } from "class-validator";
 import { MovieStatus } from "../enum/movie-status.enum";
 
@@ -32,7 +31,7 @@ export class AddMovieDto {
   @IsOptional()
   trailerUrl?: string;
 
-  @IsUUID()
+  @IsString()
   @IsNotEmpty()
   ageRatingId!: string;
 
@@ -55,7 +54,7 @@ export class AddMovieDto {
   releaseDate?: string;
 
   @IsArray()
-  @IsUUID(undefined, { each: true })
+  @IsString({ each: true })
   @IsNotEmpty()
   genreIds!: string[];
 }
